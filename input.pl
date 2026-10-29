@@ -1,24 +1,17 @@
-assert(cell(3,1,[3],1)).
-assert(cell(5,1,[7],1)).
-assert(cell(6,1,[6],1)).
-assert(cell(2,3,[4],1)).
-assert(cell(4,3,[5],1)).
-assert(cell(6,3,[1],1)).
-assert(cell(8,3,[9],1)).
-assert(cell(1,4,[6],1)).
-assert(cell(3,4,[1],1)).
-assert(cell(4,4,[8],1)).
-assert(cell(7,4,[7],1)).
-assert(cell(2,6,[5],1)).
-assert(cell(7,6,[4],1)).
-assert(cell(8,6,[2],1)).
-assert(cell(9,6,[3],1)).
-assert(cell(3,7,[2],1)).
-assert(cell(4,7,[7],1)).
-assert(cell(4,8,[6],1)).
-assert(cell(5,8,[3],1)).
-assert(cell(6,8,[9],1)).
-assert(cell(9,8,[7],1)).
-assert(cell(5,9,[8],1)).
-assert(cell(8,9,[4],1)).
-fillPuzzleProb(1,1).
+:- module(sudoku_examples, [example_puzzle/1]).
+
+/** <module> Example Sudoku puzzle */
+
+example_puzzle([
+    [5,3,0, 0,7,0, 0,0,0],
+    [6,0,0, 1,9,5, 0,0,0],
+    [0,9,8, 0,0,0, 0,6,0],
+
+    [8,0,0, 0,6,0, 0,0,3],
+    [4,0,0, 8,0,3, 0,0,1],
+    [7,0,0, 0,2,0, 0,0,6],
+
+    [0,6,0, 0,0,0, 2,8,0],
+    [0,0,0, 4,1,9, 0,0,5],
+    [0,0,0, 0,8,0, 0,7,9]
+]).

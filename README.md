@@ -1,58 +1,93 @@
-# Prolog Sudoku 🧩
+# Prolog Sudoku
 
-A small university project exploring Sudoku puzzle generation and solving using Prolog and logic programming.
+A compact Sudoku solver written in SWI-Prolog. This university project shows
+how constraint logic programming can express Sudoku rules clearly, without
+manually implementing a backtracking algorithm.
 
-## 🎯 Project Objectives
+## Features
 
-- Represent a Sudoku board using Prolog facts.
-- Explore Sudoku constraints and validation rules.
-- Experiment with generating and solving Sudoku puzzles.
-- Practice declarative programming and logical reasoning.
+- Solves standard 9x9 Sudoku puzzles with `library(clpfd)`
+- Validates dimensions, cell values, and conflicting clues
+- Checks whether a puzzle has exactly one solution
+- Prints puzzles and solutions as readable terminal grids
+- Includes automated tests and continuous integration
 
-## 🛠️ Technologies
+## Requirements
 
-- **Prolog** — Logic programming and puzzle-related rules.
+- [SWI-Prolog](https://www.swi-prolog.org/) 8.4 or newer
 
-## 📁 Project Structure
+## Quick start
 
-```text
-prolog-sudoku/
-├── input.pl
-├── solve.pl
-├── sudoku.pl
-├── screenshots/
-│   └── sudoku.png
-├── README.md
-└── LICENSE
+Clone the repository, enter its directory, and run:
+
+```bash
+swipl solve.pl
 ```
 
-## 🚀 Getting Started
+The program prints the example puzzle from `input.pl`, followed by its
+solution. Empty cells are represented by `0` in code and `.` in the terminal.
 
-1. Install a compatible Prolog implementation.
-2. Clone this repository:
+## Use your own puzzle
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/prolog-sudoku.git
-   cd prolog-sudoku
-   ```
+A puzzle is a list of nine rows, each containing nine integers from 0 to 9.
+Zero represents an empty cell.
 
-3. Open the Prolog source files in your Prolog environment.
-4. Follow the project-specific instructions to load and run the program.
+```prolog
+?- [sudoku].
+?- Puzzle = [[5,3,0,0,7,0,0,0,0],
+             [6,0,0,1,9,5,0,0,0],
+             [0,9,8,0,0,0,0,6,0],
+             [8,0,0,0,6,0,0,0,3],
+             [4,0,0,8,0,3,0,0,1],
+             [7,0,0,0,2,0,0,0,6],
+             [0,6,0,0,0,0,2,8,0],
+             [0,0,0,4,1,9,0,0,5],
+             [0,0,0,0,8,0,0,7,9]],
+   solve(Puzzle, Solution),
+   print_board(Solution).
+```
 
-**Note:** The exact execution commands and required Prolog implementation should be documented after verifying that the source files work together.
+Useful predicates:
 
-## 🖼️ Screenshot
+| Predicate | Purpose |
+| --- | --- |
+| `solve(+Puzzle, -Solution)` | Find a solution |
+| `valid_puzzle(+Puzzle)` | Check shape, values, and clue conflicts |
+| `solved_board(+Board)` | Check a completed board |
+| `unique_solution(+Puzzle, -Solution)` | Require exactly one solution |
+| `print_board(+Board)` | Print a board |
 
-Add a screenshot of the Sudoku interface here once the image and application are confirmed to match the current version.
+## Tests
 
-## 📚 Learning Outcomes
+Run the test suite with:
 
-This project is an opportunity to practice logic programming, representing data with predicates, defining constraints, and using logical rules to solve problems.
+```bash
+swipl -g run_tests -t halt test_sudoku.pl
+```
 
-## 📄 License
+## Project structure
 
-See the [LICENSE](LICENSE) file for the terms of use, if a license has been added.
+```text
+.
+├── sudoku.pl          # Solver, validator, and board printer
+├── input.pl           # Example puzzle
+├── solve.pl           # Command-line demonstration
+├── test_sudoku.pl     # Unit tests
+├── screenshots/       # Project screenshot
+├── CONTRIBUTING.md
+├── LICENSE
+└── README.md
+```
 
----
+## Screenshot
 
-A university learning project.
+![Sudoku project screenshot](screenshots/sudoku.png)
+
+## Contributing
+
+Bug reports, explanations, test cases, and focused improvements are welcome.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
+## License
+
+Released under the [MIT License](LICENSE).
